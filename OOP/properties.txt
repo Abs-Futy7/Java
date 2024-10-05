@@ -1,0 +1,39 @@
+*** 4 Properties of OOP ***
+1. Inheritence : Child class is inheriting properties from 
+                the base class.
+                
+                class Child extends Base{
+                    int weight;
+                }
+                
+                child class will have the properties of the base class
+                plus it will have addittional properties of its own.
+
+            *** Types of Inheritance ***
+            1. Single : One class extens another class. (a-->b)
+            2. Multi-level : Parent class is derived from another class (c-->a-->b)
+            3. Multiple : One class is extending more than one classes
+                (Java doesn't support this, because if two parent class
+                has same properties which class child will choose)
+            4. Hierarchical : One class is inheritance by many classes
+            5. Hybrid : Combination of single and multiple inheritance
+
+2. Polymorphism : Poly-> many, Morphism-> ways to represent
+            *** Types of Polymorphism ***
+            1. Compile Time / Static : Achieved via Method Overloadding
+               (Method Overloadding : Same name but types, arguments, return types, orderings
+               can be different. Exmple: Multiple Constructors)
+            
+            2. Runtime / Dynamic :  Achieved by Method Overriding
+                Parent obj = new Child();
+                Here, whichh method will be called depends on the type of Child(), knwon as Upcast
+                The whole thing is called Overriding
+               You cannot override Method like 'final';
+               Earlybinding, Latebinding
+
+               Overriding depends on objects, static doesn't depend on objects. Hnece u can't override static methods.
+
+3. Encapsulation : Wrapping up the implementation of the data members and stuffs , methods in a class.
+
+4. Abstraction : Hiding unnecessary details and showing valuable information
+
