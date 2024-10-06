@@ -1,0 +1,37 @@
+Packages in Java
+
+Packages are of 2 types:
+
+    User Defined:
+        Custom packages created by the user to organize classes and interfaces.
+
+    In-built (6 types):
+
+    {1} lang:
+        Contains fundamental classes and interfaces
+        like Object, String, Math, System, etc.
+        
+        Object class: The root of the class hierarchy.
+        Every class has Object as a superclass.
+
+    {2} io:
+        Used for input and output operations.
+        Contains classes like File, InputStream, OutputStream,
+        BufferedReader, PrintWriter, etc.
+
+    {3} util:
+        Contains utility classes for data structures like ArrayList,
+        HashMap, and others such as Date, Collections, Scanner, etc.
+
+    {4} applet:
+        Contains classes for creating applets
+        (small Java programs that run in a web browser)
+        like Applet, AudioClip, etc.
+
+    {5} awt:
+        Abstract Window Toolkit for creating GUI applications.
+        Contains classes like Button, Frame, Graphics, Color, Font, etc.
+
+    {6} net:
+        Provides classes for networking operations.
+        Contains classes like Socket, ServerSocket, URL, URLConnection, etc.
