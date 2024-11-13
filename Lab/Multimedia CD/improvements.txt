@@ -1,0 +1,13 @@
+1. Use Polymorphism for Media Types
+
+Currently, you have separate Audio and Video classes with very similar code.
+Instead, consider creating a Media superclass with Audio and Video subclasses.
+This will reduce code duplication and allow you to handle both types of media more generically.
+
+
+2. Consolidate Format Checking in Controller
+
+With the above polymorphism in place, Controller can be simplified.
+Instead of two methods (checkFormat(Audio audio, Application app) and
+checkFormat(Video video, Application app)), you can have a single
+method checkFormat(Media media, Application app).

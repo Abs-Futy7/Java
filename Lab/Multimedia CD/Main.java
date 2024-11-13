@@ -1,92 +1,90 @@
 package cdplayer;
+
 import java.util.Scanner;
 
-class Audio{
+class Audio {
     private String title;
     private String format;
 
-    public Audio(String title, String format){
+    public Audio(String title, String format) {
         this.title = title;
         this.format = format;
     }
 
-    public String getTitle(){
+    public String getTitle() {
         return this.title;
     }
 
-    public String getFormat(){
+    public String getFormat() {
         return this.format;
     }
 
-    public boolean checkFormat(){
+    public boolean checkFormat() {
         return format.equals("mp4") || format.equals("mp3") || format.equals("wav");
     }
 }
 
-class Video{
+class Video {
     private String title;
     private String format;
 
-    public Video(String title, String format){
+    public Video(String title, String format) {
         this.title = title;
         this.format = format;
     }
 
-    public String getTitle(){
+    public String getTitle() {
         return this.title;
     }
 
-    public String getFormat(){
+    public String getFormat() {
         return this.format;
     }
 
-    public boolean checkFormat(){
+    public boolean checkFormat() {
         return format.equals("hevc") || format.equals("mov") || format.equals("mkv");
     }
 }
 
-class Controller{
-    public void checkFormat(Audio audio, Application app){
-        if(audio.checkFormat()){
+class Controller {
+    public void checkFormat(Audio audio, Application app) {
+        if (audio.checkFormat()) {
             app.playAudio(audio);
-        }
-        else{
+        } else {
             System.out.println("Invalid format : " + audio.getFormat());
         }
     }
 
-    public void checkFormat(Video video, Application app){
-        if(video.checkFormat()){
+    public void checkFormat(Video video, Application app) {
+        if (video.checkFormat()) {
             app.playVideo(video);
-        }
-        else{
+        } else {
             System.out.println("Invalid format : " + video.getFormat());
         }
     }
 }
 
-class Application{
+class Application {
     private Player player;
 
-    public Application(Player player){
+    public Application(Player player) {
         this.player = player;
     }
-    public void playAudio(Audio audio){
+
+    public void playAudio(Audio audio) {
         player.play(audio.getTitle(), audio.getFormat());
     }
 
-    public void playVideo(Video video){
+    public void playVideo(Video video) {
         player.play(video.getTitle(), video.getFormat());
     }
 }
 
-
-class Player{
-    public void play(String title, String format){
+class Player {
+    public void play(String title, String format) {
         System.out.println("Playing " + title + "." + format);
     }
 }
-
 
 public class Main {
     public static void main(String[] args) {
@@ -95,13 +93,17 @@ public class Main {
         Player player = new Player();
         Application app = new Application(player);
 
-        Audio a1 = new Audio("Song1", "mp3");
-        Audio a2 = new Audio("Song2", "mp4");
-        Audio a3 = new Audio("Song3", "wav");
+        Audio[] audios = {
+                new Audio("Song1", "mp3"),
+                new Audio("Song2", "mp4"),
+                new Audio("Song3", "wav")
+        };
 
-        Video v1 = new Video("Vid1", "mov");
-        Video v2 = new Video("Vid2", "mkv");
-        Video v3 = new Video("Vid3", "hevc");
+        Video[] videos = {
+                new Video("Vid1", "mov"),
+                new Video("Vid2", "mkv"),
+                new Video("Vid3", "hevc")
+        };
 
         System.out.println("Which file you want to play?");
         System.out.println("For 'Audio' enter 1\nFor 'Video' enter 2");
@@ -109,27 +111,21 @@ public class Main {
         int n = sc.nextInt();
         sc.nextLine();
 
-        if(n==1){
+        if (n == 1) {
 
             System.out.println("Available audios are:");
-            System.out.println("1. " + a1.getTitle() + "." + a1.getFormat());
-            System.out.println("2. " + a2.getTitle() + "." + a2.getFormat());
-            System.out.println("3. " + a3.getTitle() + "." + a3.getFormat());
+
+            for (int i = 0; i < audios.length; i++) {
+                System.out.println((i + 1) + ". " + audios[i].getTitle() + "." + audios[i].getFormat());
+            }
 
             System.out.println("Select 1/2/3");
 
             int x = sc.nextInt();
 
-            if(x==1){
-                controller.checkFormat(a1, app);
-            }
-            else if(x==2){
-                controller.checkFormat(a2, app);
-            }
-            else if(x==3){
-                controller.checkFormat(a3, app);
-            }
-            else{
+            if (x >= 1 && x <= audios.length) {
+                controller.checkFormat(audios[x - 1], app);
+            } else {
                 System.out.println("Invalid");
             }
         }
@@ -137,31 +133,21 @@ public class Main {
         else if (n == 2) {
 
             System.out.println("Available videos are:");
-            System.out.println("1. " + v1.getTitle() + "." + v1.getFormat());
-            System.out.println("2. " + v2.getTitle() + "." + v2.getFormat());
-            System.out.println("3. " + v3.getTitle() + "." + v3.getFormat());
+            for (int i = 0; i < videos.length; i++) {
+                System.out.println((i + 1) + ". " + videos[i].getTitle() + "." + videos[i].getFormat());
+            }
 
-            System.out.print("Select 1/2/3");
+            System.out.println("Select 1/2/3");
+
             int x = sc.nextInt();
-            
-            if(x==1){
-                controller.checkFormat(v1, app);
-            }
-            else if(x==2){
-                controller.checkFormat(v2, app);
-            }
-            else if(x==3){
-                controller.checkFormat(v3, app);
-            }
-            else{
+
+            if (x >= 1 && x <= videos.length) {
+                controller.checkFormat(videos[x - 1], app);
+            } else {
                 System.out.println("Invalid");
             }
-
-        }
-        else {
-            System.out.println("Invalid choice.");
+            
         }
         sc.close();
-
     }
 }
