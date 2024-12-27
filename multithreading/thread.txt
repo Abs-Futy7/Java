@@ -1,0 +1,17 @@
+Thread:
+
+Threads allows a program to operate more efficiently by doing multiple things at the same time.
+Threads can be used to perform complicated tasks in the background without interrupting the main program.
+
+
+Multithreading:
+
+Multithreading is a programming technique that allows a program to perform multiple tasks at the same time.
+Process of executing multiple threads simultaneously is called multithreading.
+
+Example: Running music player in the background, playing video in the background, 
+downloading files in the background, etc. while doing tasks in MS Word.
+
+Creating Threads:
+    1. Using Thread class
+    2. Using Runnable interface
