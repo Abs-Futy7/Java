@@ -1,0 +1,62 @@
+Usefulness of the Serializable Interface in Java I/O
+What is Serialization?
+
+Serialization is the process of converting an object into a byte stream so that it can be:
+
+    Stored in a file or database.
+    Transferred over a network.
+    Reconstructed later using deserialization.
+
+Why Use the Serializable Interface?
+
+    Java provides the java.io.Serializable marker interface to enable object serialization.
+    When a class implements Serializable, Java automatically handles the conversion of its objects into a storable or transferable format.
+
+Example of Serialization and Deserialization
+
+import java.io.*;
+
+// Student class implementing Serializable
+class Student implements Serializable {
+    int id;
+    String name;
+    double marks;
+
+    Student(int id, String name, double marks) {
+        this.id = id;
+        this.name = name;
+        this.marks = marks;
+    }
+}
+
+public class SerializationExample {
+    public static void main(String[] args) {
+        try {
+            // Create a student object
+            Student s1 = new Student(101, "John", 85.5);
+
+            // Serialization - Writing object to a file
+            FileOutputStream fileOut = new FileOutputStream("student.dat");
+            ObjectOutputStream out = new ObjectOutputStream(fileOut);
+            out.writeObject(s1);
+            out.close();
+            fileOut.close();
+            System.out.println("Student object serialized.");
+
+            // Deserialization - Reading object from file
+            FileInputStream fileIn = new FileInputStream("student.dat");
+            ObjectInputStream in = new ObjectInputStream(fileIn);
+            Student deserializedStudent = (Student) in.readObject();
+            in.close();
+            fileIn.close();
+            System.out.println("Deserialized Student: " + deserializedStudent.id + ", " + deserializedStudent.name + ", " + deserializedStudent.marks);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+}
+
+Output
+
+Student object serialized.
+Deserialized Student: 101, John, 85.5

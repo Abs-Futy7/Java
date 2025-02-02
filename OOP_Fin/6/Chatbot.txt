@@ -1,0 +1,51 @@
+                        ┌────────────────┐
+                        │     SimpleBot  │
+                        ├────────────────┤
+                        │ +processQuery()│
+                        └───────▲────────┘
+                                │
+┌──────────────────────────────┬─────────────────────────────┐
+│                              │                             │
+┌────▼─────┐                 ┌──────▼─────┐               ┌───────▼──────┐
+│Educational│                 │Entertainment│             │Miscellaneous │
+└────▲─────┘                 └──────▲─────┘               └───────▲──────┘
+     │                                  │                             │
+┌────▼──────────┬───────────────┐   ┌───▼───────┬───────────┐    ┌───▼────────┐
+│Technical      │ General       │   │ Movies   │ Books     │     │RandomArticle │
+└───────────────┴───────────────┘   └──────────┴───────────┘     └──────────────┘
+
+        ┌───────────────┐
+        │  Subscription │
+        ├───────────────┤
+        │ - Type        │
+        │ + getModel()  │
+        └───────▲───────┘
+                │
+┌─────────────────────────────┬─────────────────────────────┐
+│                             │                             │
+┌────▼──────┐               ┌──────▼──────┐               ┌──────▼──────┐
+│ RUMModel  │               │ LSTMModel   │               │ Transformer │
+│ (Basic)   │               │ (Medium)    │               │ (Pro)       │
+└───────────┘               └─────────────┘               └─────────────┘
+
+
+SimpleBot processes user prompts.
+
+Prompts are categorized into:
+
+    Educational (subcategories: Technical, General, Basic)
+    Entertainment-centric (subcategories: Movies, Books)
+    Miscellaneous (including subcategory Random-Article)
+
+Machine Learning Models for Processing:
+
+    TransformerModel (Highest performance)
+    LSTMModel (Medium performance)
+    RUMModel (Lowest performance)
+
+Subscription Levels:
+
+    Basic → RUMModel
+    Medium → LSTMModel
+    Pro → TransformerModel
+    During query processing, the best available model is used based on the subscription.

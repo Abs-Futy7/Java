@@ -1,0 +1,8 @@
+Deadlock occurs when two or more threads are waiting for each other's resources, 
+leading to an infinite wait state.
+
+Example Scenario:
+
+    Thread A locks Resource 1 and waits for Resource 2.
+    Thread B locks Resource 2 and waits for Resource 1.
+    Since neither thread can proceed, deadlock occurs.

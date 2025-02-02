@@ -1,0 +1,40 @@
+1(a) Justification of "Inheritance provides a powerful mechanism for code reuse" with examples:
+Explanation
+
+Inheritance is a key feature of Object-Oriented Programming (OOP) that allows a class (child) to inherit attributes and methods from another class (parent). This promotes code reuse, reduces redundancy, and enhances maintainability.
+Example 1: Banking System
+
+In a banking system, different types of accounts (e.g., SavingsAccount, CurrentAccount) share common features like accountNumber, name, and balance. Instead of rewriting these attributes in each class, we can define them in a parent class (Account) and let the child classes inherit them.
+
+class Account {
+    int accountNumber;
+    String name;
+    double balance;
+    
+    Account(int n, String s, double b) {
+        accountNumber = n;
+        name = s;
+        balance = b;
+    }
+    
+    public String toString() {
+        return accountNumber + " " + name + " " + balance;
+    }
+}
+
+class SavingsAccount extends Account {
+    double interestRate;
+    
+    SavingsAccount(int n, String s, double b, double rate) {
+        super(n, s, b);
+        interestRate = rate;
+    }
+    
+    public String toString() {
+        return super.toString() + " " + interestRate + "% Interest";
+    }
+}
+
+✅ Code Reuse: The SavingsAccount class reuses the Account class attributes without redefining them.
+
+✅ Efficiency: If we modify the Account class (e.g., add a new method deposit()), all subclasses will automatically have access to it.

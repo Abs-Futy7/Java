@@ -1,0 +1,42 @@
+package p2;
+
+public class B {
+    public int x; // Made public
+    public int y;
+    private int z; // Keep private but use getter/setter
+    protected int a;
+
+    // Getter for private z
+    public int getZ() {
+        return z;
+    }
+
+    public void setZ(int value) {
+        this.z = value;
+    }
+}
+
+**************************************************************
+
+package p1;
+import p2.B;
+import p2.D;
+
+class C extends B {
+    public void temp() {
+        x = 11; // Now accessible
+        y = 12; // Public
+        a = 13; // Protected, accessible in subclass
+    }
+}
+
+public class A {
+    public static void main(String[] args) {
+        B b = new B();
+        b.a = 10;  // ERROR: a is protected, cannot access in non-subclass
+        b.x = 20;  // Now accessible after making it public
+        b.y = 30;  // Public, no issue
+        b.z = 70;  // ERROR: z is private, must use setter
+        b.setZ(70); // Corrected way
+    }
+}
