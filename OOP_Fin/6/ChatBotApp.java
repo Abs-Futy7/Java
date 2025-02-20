@@ -1,9 +1,11 @@
-// Base class for Machine Learning Models
+import java.util.*;
+
+// Abstract class for Machine Learning Models
 abstract class MLModel {
     abstract void processQuery(String query);
 }
 
-// Three ML Model Implementations
+// ML Model Implementations
 class RUMModel extends MLModel {
     void processQuery(String query) {
         System.out.println("Processing with RUMModel: " + query);
@@ -31,11 +33,26 @@ class Subscription {
     }
 
     MLModel getModel() {
-        switch (type) {
-            case "Pro": return new TransformerModel();
-            case "Medium": return new LSTMModel();
-            default: return new RUMModel();
+        if (type.equalsIgnoreCase("Pro")) {
+            return new TransformerModel(); // Highest power model
+        } else if (type.equalsIgnoreCase("Medium")) {
+            return new LSTMModel();
+        } else {
+            return new RUMModel(); // Basic model
         }
+    }
+}
+
+// Prompt Class
+class Prompt {
+    String query;
+    String category;
+    String subCategory;
+
+    Prompt(String query, String category, String subCategory) {
+        this.query = query;
+        this.category = category;
+        this.subCategory = subCategory;
     }
 }
 
@@ -47,18 +64,25 @@ class SimpleBot {
         this.subscription = subscription;
     }
 
-    void processQuery(String query) {
+    void processQuery(Prompt prompt) {
         MLModel model = subscription.getModel();
-        model.processQuery(query);
+        System.out.println("Category: " + prompt.category + ", Subcategory: " + prompt.subCategory);
+        model.processQuery(prompt.query);
     }
 }
 
 // Main Class for Testing
 public class ChatBotApp {
     public static void main(String[] args) {
-        Subscription userSubscription = new Subscription("Medium");
+        Subscription userSubscription = new Subscription("Medium"); // User with Medium subscription
         SimpleBot bot = new SimpleBot(userSubscription);
-        bot.processQuery("Tell me about AI.");
+
+        // Sample prompts
+        Prompt prompt1 = new Prompt("Explain AI Basics", "Educational", "Basic");
+        Prompt prompt2 = new Prompt("Suggest Sci-Fi Books", "Entertainment", "Book");
+
+        // Processing queries
+        bot.processQuery(prompt1);
+        bot.processQuery(prompt2);
     }
 }
-
